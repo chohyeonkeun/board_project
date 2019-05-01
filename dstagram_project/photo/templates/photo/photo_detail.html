@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Photo Detail
+{% endblock %}
+
+{% block content %}
+    <div class="col-6">
+        <div class="card" style="margin-top:2em;">
+            <div class="card-header">
+                {{object.author.username}}
+            </div>
+            <img src="{{object.image.url}}" class="card-img-top">
+            {% if object.text %}
+            <div class="card-body">
+                <p class="card-text"> {{object.text}} </p>
+                <p class="card-text"><small class="text-muted"> Last updated {{object.updated}} </small></p>
+            </div>
+            {% endif %}
+
+            <div class="card-body">
+                <a href="{% url 'photo:update' object.id %}" class="card-link">수정</a>
+                <a href="{% url 'photo:delete' object.id %}" class="card-link">삭제</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

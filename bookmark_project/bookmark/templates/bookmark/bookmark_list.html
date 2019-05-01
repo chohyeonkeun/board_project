@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+<!--//
+CRUDL - 복수 객체, 단일 객체
+C - 객체 생성
+R - 단일 객체 -> object
+U - 단일 객체 -> object
+D - 단일 객체 -> object
+L - 복수 객체 -> object_list
+//-->
+{% block title %}
+Bookmark List
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col"></div>
+    <div class="col-12 col-xl-8 col-md-8">
+        <div style="margin: 20px 0 20px 0">
+            <a href="{% url 'bookmark:create'  %}" class="btn btn-primary">Add Bookmark</a><br>
+        </div>
+        {# bookmark 목록 출력하기 #}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col" style="text-align:middle;">순</th>
+                    <th scope="col">사이트명</th>
+                    <th scope="col">링크</th>
+                    <th scope="col">수정</th>
+                    <th scope="col">삭제</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for object in object_list %}
+                <tr>
+                    <td style="vertical-align: middle;"> {{object.id}} </td>
+                    <td style="vertical-align: middle;">
+                        <a href="{% url 'bookmark:detail' object.id %}">{{object.site_name}}</a><br>
+                    </td>
+                    <td><a href="{{object.url}}" target="_blank" class="card-link btn btn-link">Link</a></td>
+                    <td><a href="{% url 'bookmark:update' object.id %}" class="card-link btn btn-warning">Modify</a></td>
+                    <td><a href="{% url 'bookmark:delete' object.id %}" class="card-link btn btn-danger">Delete</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="col"></div>
+</div>
+    <!-- object.id 쓰는 이유 : bookmark/urls.py 에서 detail/<converter> 부분 받아오겠다라는 의미 -->
+{% endblock %}
