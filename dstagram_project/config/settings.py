@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'accounts',
     'photo',
+    'disqus',
+    'django.contrib.sites',
 ]
 
 MIDDLEWARE = [
@@ -125,3 +127,8 @@ MEDIA_URL = '/res/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 LOGIN_REDIRECT_URL ='/'
+
+# django-disqus : 데이터베이스 X -> disqus.com
+# django.contrib.sites : 우리 프로젝트 사이트 정보 관리 --> migrate 필요요
+DISQUS_WEBSITE_SHORTNAME = 'firstdstagram'
+SITE_ID = 1

@@ -5,4 +5,9 @@ Photo Delete
 {% endblock %}
 
 {% block content %}
+    <form action="" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Delete Ok">
+    </form>
+
 {% endblock %}

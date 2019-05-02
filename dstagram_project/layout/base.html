@@ -26,6 +26,9 @@
           <li class="nav-item">
             <a class="nav-link" href="{% url 'accounts:signout' %}">Sign-out</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'photo:slist' %}">Saved-list</a>
+          </li>
           {% else %}
           <li class="nav-item">
             <a class="nav-link" href="{% url 'accounts:signin' %}">Sign-in</a>
@@ -38,13 +41,79 @@
       </div>
     </nav>
 
+    {% load static %}
+    <style>
+        .btn-like {
+            display: inline-block;
+            width: 25px;
+            height: 25px;
+            background:url({% static 'images/instagram.png' %});
+            background-position: -231px -129px;
+            text-indent:-9999px;  /* 영역 안에 있는 텍스트의 들여쓰기 */
+            overflow:hidden;
+            border:none;
+        }
+        .btn-like.active {
+            background-position: -231px -105px;
+        }
+        .btn-save {
+            display: inline-block;
+            width: 25px;
+            height: 25px;
+            background: url({% static 'images/instagram.png' %});
+            background-position: -208px -255px;
+            text-indent:-9999px;
+            overflow:hidden;
+            border:none;
+        }
+        .btn-save.active {
+            background-position: -130.4px -254px
+        }
+    </style>
+    <div id="test_button">
+
+    </div>
+
     <div class="container">
-        {% block content %}
-        {% endblock %}
+        {% if messages %}
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-6">
+                {% for message in messages %}
+                <div class="alert alert-{{message.tags}}">{{message}}</div>
+                {% endfor %}
+            </div>
+            <div class="col"></div>
+        </div>
+        {% endif %}
+
+    {% block content %}
+
+    {% endblock %}
     </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        $(function() {
+            $('.btn-like').click(function(e) {
+                // e.preventDefault();
+                // $(this).toggleClass('active');
+                // $(this).blur();
+            });
+
+            $('.btn-save').click(function(e) {
+                // e.preventDefault();
+                // $(this).toggleClass('active');
+                // $(this).blur();
+            });
+            $('.navbar-nav mr-auto mt-2 mt-lg-0 li:nth-child(5)').on('click', function(){
+                $(this).css('font-wight', 'bold');
+            });
+
+        });
+    </script>
+
 </body>
 </html>

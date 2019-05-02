@@ -37,6 +37,9 @@ class Photo(models.Model):
     created = models.DateTimeField(auto_now_add=True)   # 처음 생성할 때만 지정
     updated = models.DateTimeField(auto_now=True)   # 처음 생성할때, 수정할때마다 지정
 
+    like = models.ManyToManyField(get_user_model(), related_name='like_post')
+    saved = models.ManyToManyField(get_user_model(), related_name='saved_post')
+
     class Meta:
         ordering = ['-created']
 

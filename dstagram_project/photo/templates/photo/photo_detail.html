@@ -5,6 +5,7 @@ Photo Detail
 {% endblock %}
 
 {% block content %}
+    <div class="col"></div>
     <div class="col-6">
         <div class="card" style="margin-top:2em;">
             <div class="card-header">
@@ -16,12 +17,32 @@ Photo Detail
                 <p class="card-text"> {{object.text}} </p>
                 <p class="card-text"><small class="text-muted"> Last updated {{object.updated}} </small></p>
             </div>
+            <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <a href="{% url 'photo:like' object.id %}" class="float-left btn-like
+                        {% if user in object.like.all %}active{% endif %}">Like</a>
+                        <a href="{% url 'photo:saved' object.id %}" class="float-right btn-save
+                    {% if user in object.saved.all %}active{% endif %}">Save</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="{% url 'photo:update' object.id %}" class="card-link">수정</a>
+                        <a href="{% url 'photo:delete' object.id %}" class="card-link">삭제</a>
+                    </li>
+            </ul>
             {% endif %}
 
+
+        <!--                <form action="{% url 'photo:delete' object.id %}" method="post">-->
+        <!--                    {% csrf_token %}-->
+        <!--                    <input type="submit" value="Post Delete" class="btn btn-danger">-->
+        <!--                </form>-->
+
+            {# load xxx 해당 태그 기능을 지금부터 사용하겠다. #}
+            {% load disqus_tags %}
             <div class="card-body">
-                <a href="{% url 'photo:update' object.id %}" class="card-link">수정</a>
-                <a href="{% url 'photo:delete' object.id %}" class="card-link">삭제</a>
+                {% disqus_show_comments %}
             </div>
         </div>
     </div>
+    <div class="col"></div>
 {% endblock %}
