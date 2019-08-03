@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    내용
+</div>
+<a href="#">내용 토글</a>
+<a hrefe="#" class="btn_menu">MENU</a>
+<ul class="main_menu" style="display:none">  /* 애초에 안보이도록 설정 */
+    <li>메뉴1</li>
+    <li>메뉴2</li>
+    <li>메뉴3</li>
+    <li>메뉴4</li>
+</ul>
+
+<textarea class="contents"></textarea>
+<button class="btn_change">내용바꾸기</button>
+
+<form method="post" action="" id="register_form">
+    username : <input type="text" name="username"><br>
+    address : <input type="text" name="address"><br>
+    <input type="submit" value="회원가입">
+</form>
+<!--//
+    jQuery : 액션에 대해서 리액션
+    액션 : 마우스 클릭, 롤오버, 롤아웃, 키 프레스, 키 다운, 키 업, 스크롤
+    리액션 : 어떤 요소를 보여준다. 감춘다. 변경한다.
+    어떤 버튼을 클릭하면 - 메뉴가 나타난다.
+    어떤 키를 누르면 - 페이지를 이동한다.
+    //-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script type="text/javascript">
+    // 기본 코드 : 읽자마자 실행
+    $(function) {
+        // 페이지 로드가 완전히 끝난 경우 실행
+        console.log('1');
+    });
+
+    $(document).ready(function() {
+        // 문서 로드가 끝난 경우 실행
+        // 어떤 액션에 대해서 무슨 리액션을 할 것인지 연결 목록
+        // 액션 : a태그 클릭 - 어떤 요소 + 어떤 이벤트
+        // 리액션 : div태그 보이기/숨기기 - 어떤 함수 실행
+        $('a').click(function() {
+            $('div').toggle();
+            // $('div').hide();
+            // $('div').show();
+        });
+    });
+
+    $('.btn_menu').click(function() {
+        //$('.main_menu').toggle();
+        if ($('.main_menu').is(":visible")) {
+            $('.main_menu').hide();
+        } else {
+            $('.main_menu').show())
+        }
+    });
+
+    $('.btn_change').click(function() {
+        // 요소.html() - 요소 안에 있는 html 코드 불러오기
+        // 요소.html(내용) - 요소 안에 있는 html 코드를 내용으로 교체한다.
+        $('.contents').html("내용채우기 실습!");
+    });
+
+
+    $('#register_form').submit(function() {
+        // 위에서 validation을 하고
+        // val() 비어있으면 값 일기, val(값) 값이 있으면 값 할당
+        username = $('input[name="username"]').val();
+        address = $('input[name="address"]').val(username+"nate.com");
+        // validation이 실패했다면 return false; 성공했다면 return true;
+        return false;
+    });
+
+    $('.btn_menu').click(function() {
+        //$('.main_menu').toggle();
+        if ($('.main_menu').is(":visible")) {
+            $('.main_menu').hide(1000);
+        else {
+            $('.main_menu').show(1000);
+        }
+    });
+
+
+
+    /*
+        - 기명함수
+        function [함수이름]([매개변수]) {
+        }
+        - 무기명함수 (보통 일회용으로 사용)
+        function([매개변수]) {
+        }
+    */
+
+</script>
+</body>
+</html>
